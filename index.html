@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Mother's Day ❤️</title>
+
+  <!-- QR Code Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 700px;
+      padding: 30px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      animation: fadeIn 2s ease;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .quote {
+      font-size: 1.4rem;
+      margin: 25px 0;
+      min-height: 120px;
+      animation: fade 1s ease;
+    }
+
+    button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      background: white;
+      color: #e91e63;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background: #ffe6ee;
+    }
+
+    #qrcode {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .heart {
+      position: absolute;
+      color: rgba(255,255,255,0.7);
+      font-size: 20px;
+      animation: float 6s linear infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {opacity:0; transform: translateY(30px);}
+      to {opacity:1; transform: translateY(0);}
+    }
+
+    @keyframes fade {
+      from {opacity:0;}
+      to {opacity:1;}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>🌸 Happy Mother's Day 🌸</h1>
+
+    <div class="quote" id="quote">
+      "A mother’s love is the fuel that enables a normal human being to do the impossible."
+    </div>
+
+    <button onclick="newQuote()">Show Another Quote ❤️</button>
+
+    <div id="qrcode"></div>
+  </div>
+
+  <script>
+    const quotes = [
+      "A mother’s hug lasts long after she lets go.",
+      "Life doesn’t come with a manual, it comes with a mother.",
+      "Mothers hold their children’s hands for a while, but their hearts forever.",
+      "Home is where your mom is.",
+      "A mother’s love is endless and unconditional.",
+      "To the world, you are a mother. To your family, you are the world.",
+      "Mom: A title just above Queen.",
+      "Behind every great person is an even greater mother.",
+      "A mother understands what a child does not say.",
+      "Thank you Mom for being my biggest strength."
+    ];
+
+    function newQuote() {
+      const random = Math.floor(Math.random() * quotes.length);
+      document.getElementById("quote").innerText = `"${quotes[random]}"`;
+    }
+
+    // Generate QR Code
+    new QRCode(document.getElementById("qrcode"), {
+      text: window.location.href,
+      width: 150,
+      height: 150,
+    });
+
+    // Floating hearts animation
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "❤";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 10 + "px";
+      heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
+
+</body>
+</html>
